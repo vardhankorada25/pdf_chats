@@ -1,0 +1,8 @@
+streamlit
+python-dotenv
+pdfplumber
+langchain
+langchain-community
+transformers
+torch
+sentence-transformers
