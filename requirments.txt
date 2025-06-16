@@ -1,5 +1,5 @@
 streamlit
-load_dotenv
+python-dotenv
 pdfplumber
 langchain
 langchain-community
