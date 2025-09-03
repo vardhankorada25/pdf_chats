@@ -32,7 +32,6 @@ def get_text_chunks(text):
     chunks = text_splitter.split_text(text)
     return chunks
 
-# **REMOVED THE @st.cache_resource DECORATOR**
 def get_vectorstore(text_chunks):
     embeddings = HuggingFaceEmbeddings(
         model_name="sentence-transformers/all-MiniLM-L6-v2"
@@ -40,8 +39,7 @@ def get_vectorstore(text_chunks):
     vectorstore = FAISS.from_texts(texts=text_chunks, embedding=embeddings)
     return vectorstore
 
-# Use Streamlit's built-in caching for the conversation chain
-@st.cache_resource
+# **REMOVED THE @st.cache_resource DECORATOR**
 def get_conversation_chain(vectorstore):
     model_name = "google/flan-t5-small"
     tokenizer = AutoTokenizer.from_pretrained(model_name)
