@@ -32,8 +32,7 @@ def get_text_chunks(text):
     chunks = text_splitter.split_text(text)
     return chunks
 
-# Use Streamlit's built-in caching for the vector store
-@st.cache_resource
+# **REMOVED THE @st.cache_resource DECORATOR**
 def get_vectorstore(text_chunks):
     embeddings = HuggingFaceEmbeddings(
         model_name="sentence-transformers/all-MiniLM-L6-v2"
@@ -111,7 +110,8 @@ def main():
                 with st.spinner("Processing your PDFs..."):
                     raw_text = get_pdf_text(pdf_docs)
                     text_chunks = get_text_chunks(raw_text)
-                    st.session_state.conversation = get_conversation_chain(get_vectorstore(text_chunks))
+                    vectorstore = get_vectorstore(text_chunks)
+                    st.session_state.conversation = get_conversation_chain(vectorstore)
                     # Clear chat history when new documents are processed
                     st.session_state.chat_history = None
                     st.success("PDFs processed and chat ready!")
