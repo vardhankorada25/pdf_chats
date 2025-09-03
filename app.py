@@ -41,7 +41,8 @@ def get_vectorstore(text_chunks):
 
 # **REMOVED THE @st.cache_resource DECORATOR**
 def get_conversation_chain(vectorstore):
-    model_name = "google/flan-t5-small"
+    # Changed model to a larger, more capable one for better accuracy
+    model_name = "google/flan-t5-large"
     tokenizer = AutoTokenizer.from_pretrained(model_name)
     model = AutoModelForSeq2SeqLM.from_pretrained(model_name)
 
@@ -60,7 +61,8 @@ def get_conversation_chain(vectorstore):
 
     conversational_chain = ConversationalRetrievalChain.from_llm(
         llm=llm,
-        retriever=vectorstore.as_retriever(search_kwargs={"k": 2}),
+        # Increased the number of retrieved chunks for more context
+        retriever=vectorstore.as_retriever(search_kwargs={"k": 4}),
         memory=memory,
     )
     return conversational_chain
