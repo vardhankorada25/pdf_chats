@@ -5,4 +5,5 @@ langchain
 langchain-community
 transformers
 torch
-sentence-transformers
+sentence-transformers  
+chromadb
