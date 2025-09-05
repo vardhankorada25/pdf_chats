@@ -1,8 +1,8 @@
-streamlit==1.30.0
-python-dotenv==1.0.1
-pdfplumber==0.9.0
-langchain==0.1.234
-transformers==4.42.2
-torch==2.1.0
-sentence-transformers==2.2.2
-faiss-cpu==1.7.4
+streamlit>=1.49.1
+python-dotenv>=1.0.1
+pdfplumber>=0.9.0
+transformers>=4.42.2
+torch>=2.1.0
+sentence-transformers>=2.2.2
+faiss-cpu>=1.7.4
+langchain-community>=0.2.0
