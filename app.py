@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 import pdfplumber
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.embeddings import HuggingFaceEmbeddings
-from langchain_community.vectorstores import Chroma
+from langchain.vectorstores import FAISS
 from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain
 from langchain.llms import HuggingFacePipeline
@@ -74,7 +74,7 @@ def get_vectorstore(text_chunks):
         with open(vector_cache_file, "rb") as f:
             return pickle.load(f)
     else:
-        vectorstore = Chroma.from_texts(texts=text_chunks, embedding=embeddings)
+        vectorstore = FAISS.from_texts(texts=text_chunks, embedding=embeddings)
         with open(vector_cache_file, "wb") as f:
             pickle.dump(vectorstore, f)
         return vectorstore
